@@ -14,7 +14,7 @@ import seaborn as sns
 
 import zipfile
 
-with zipfile.ZipFile("/content/wine-reviews.zip", 'r') as zip_ref:
+with zipfile.ZipFile("/content/wine-reviews.zip", "r") as zip_ref:
     zip_ref.extractall("/content/")
 
 df1 = pd.read_csv("/content/winemag-data-130k-v2.csv")
@@ -44,64 +44,62 @@ print(df.shape)
 
 df
 
-#Checking missing values
+# Checking missing values
 df.isnull().sum()
 
-#cleaning the data
-df['price'] = df['price'].fillna(df['price'].median())
-df['country'] = df['country'].fillna('Unknown')
-df['province'] = df['province'].fillna('Unknown')
+# cleaning the data
+df["price"] = df["price"].fillna(df["price"].median())
+df["country"] = df["country"].fillna("Unknown")
+df["province"] = df["province"].fillna("Unknown")
 
 df
 
 df.describe()
 
 plt.figure()
-sns.histplot(df['points'], bins=20)
+sns.histplot(df["points"], bins=20)
 plt.title("Distribution of Wine Ratings")
 plt.show()
 
 plt.figure()
-sns.histplot(df['price'], bins=50)
+sns.histplot(df["price"], bins=50)
 plt.title("Price Distribution")
 plt.show()
 
-top_countries = df['country'].value_counts().head(10)
+top_countries = df["country"].value_counts().head(10)
 
 plt.figure()
-top_countries.plot(kind='bar')
+top_countries.plot(kind="bar")
 plt.title("Top Wine Producing Countries")
 plt.show()
 
 plt.figure()
-sns.scatterplot(x='price', y='points', data=df)
+sns.scatterplot(x="price", y="points", data=df)
 plt.title("Price vs Rating")
 plt.show()
 
-correlation = df[['price', 'points']].corr()
+correlation = df[["price", "points"]].corr()
 
 sns.heatmap(correlation, annot=True)
 plt.title("Correlation Matrix")
 plt.show()
 
-country_rating = df.groupby('country')['points'].mean().sort_values(ascending=False).head(10)
+country_rating = df.groupby("country")["points"].mean().sort_values(ascending=False).head(10)
 
-country_rating.plot(kind='bar')
+country_rating.plot(kind="bar")
 plt.title("Average Rating by Country")
 plt.show()
 
-df['price_category'] = pd.cut(df['price'],
-                             bins=[0, 20, 50, 100, 500],
-                             labels=['Cheap', 'Affordable', 'Expensive', 'Luxury'])
+df["price_category"] = pd.cut(
+    df["price"], bins=[0, 20, 50, 100, 500], labels=["Cheap", "Affordable", "Expensive", "Luxury"]
+)
 
-df['price_category'].value_counts().plot(kind='bar')
+df["price_category"].value_counts().plot(kind="bar")
 plt.title("Wine Price Categories")
 plt.show()
 
 df.to_csv("cleaned_wine_data.csv", index=False)
 
 from google.colab import files
-files.download('cleaned_wine_data.csv')
 
-
-
+files.download("cleaned_wine_data.csv")
