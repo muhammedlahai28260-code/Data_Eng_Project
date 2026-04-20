@@ -1,5 +1,9 @@
 # Data_Eng_Project
 
+We collaborated to create a GitHub repository named “Data_Engineering_Project” and used an API key from the Kaggle API to fetch the wine dataset via Bash. The data was then analyzed using Python in Google Colab, where we performed exploratory data analysis (EDA) and generated visualizations to better understand the dataset.
+
+From our analysis, we observed that most wines fall within the affordable price range while still receiving relatively high ratings. Additionally, there is a weak relationship between price and quality, indicating that higher-priced wines are not necessarily better. We also found that wine production is concentrated in a few countries, with some countries consistently achieving higher average ratings. 
+
 <a target="_blank" href="https://cookiecutter-data-science.drivendata.org/">
     <img src="https://img.shields.io/badge/CCDS-Project%20template-328F97?logo=cookiecutter" />
 </a>
